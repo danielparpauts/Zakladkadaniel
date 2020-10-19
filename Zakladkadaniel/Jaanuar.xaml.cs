@@ -29,8 +29,23 @@ namespace Zakladkadaniel
                     new ColumnDefinition{Width=new GridLength(1,GridUnitType.Star)}
                 }
 
+            
 
             };
+            Label nimetus = new Label { Text = "Январская фотография", FontSize = 30 };
+            Image img = new Image { Source = "an.jpg" };
+            Label kirjeldus = new Label { Text = "Январь первый месяц в году!!! \nПервая зима в году!!!" };
+            var tap = new TapGestureRecognizer();
+            tap.Tapped += async (s, e) =>
+            {
+                img = (Image)s;
+                await DisplayAlert("Информация", "1 Января, День Независимости Камеруна", "Закрыть");
+            };
+            img.GestureRecognizers.Add(tap);
+            grd.Children.Add(nimetus, 0, 0);
+            grd.Children.Add(img, 0, 1);
+            grd.Children.Add(kirjeldus, 0, 2);
+            Content = grd;
         }
     }
 }
